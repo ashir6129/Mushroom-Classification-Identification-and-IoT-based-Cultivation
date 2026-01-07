@@ -1,0 +1,61 @@
+name: pak_mushrooms
+description: Pak Mushrooms App
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: ">=3.0.0 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # Image picker for camera/gallery access
+  image_picker: ^1.2.1
+  image: ^4.0.17
+
+  # Local DB + helpers
+  sqflite: ^2.3.3
+  path: ^1.9.0
+  path_provider: ^2.0.17
+
+  # UI icons
+  cupertino_icons: ^1.0.5
+  
+  # Local storage for saved mushrooms
+  shared_preferences: ^2.2.2
+  
+  # ONNX Runtime for offline ML inference
+  onnxruntime: ^1.4.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+  flutter_native_splash: ^2.3.8
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/images/splash_logo.png
+    - assets/images/splash_after.jpg
+    - assets/images/mushroom_card1.png
+    - assets/images/mushroom_card2.png
+    - assets/images/mushroom_card3.png
+    - assets/images/default.png
+    - assets/images/mushrooms/
+    - assets/db/mushrooms.db
+    - assets/model/mushroom_structure.csv
+    - assets/model/mushroom_model.onnx
+    - assets/model/mushroom_model.onnx.data
+    - assets/model/mushroom_labels.txt
+
+flutter_native_splash:
+  image: assets/images/splash_logo.png
+  color: "#ffffff"
+  android: true
+  ios: true
+  web: false
+  android_gravity: center
+  android_fullscreen: true
