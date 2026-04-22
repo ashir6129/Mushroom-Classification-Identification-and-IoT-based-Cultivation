@@ -1,0 +1,1679 @@
+IoT Mushroom Cultivation
+System
+Simulation → Real Hardware
+Complete Step-by-Step Implementation Guide
+Based on your actual Bill of Materials | Total Budget: PKR 36,407
+
+What this guide covers
+How to connect every real sensor (SHT31, SEN0161, SEN0193, MH-Z19C, BH1750)
+How to wire the relay, fan, fogger, and LED strip
+The complete updated code for real hardware
+How to flash the code to your ESP32-WROVER-E
+How to calibrate the pH sensor
+Testing checklist and troubleshooting guide
+
+Table of Contents
+Chapter
+
+Title
+
+1
+
+What Changes — Simulation vs Real Hardware
+
+2
+
+Understanding Your Real Sensors
+
+3
+
+The I2C Bus — How 4 Devices Share 2 Wires
+
+4
+
+Complete Real Hardware Wiring (Every Pin)
+
+5
+
+Power Supply Wiring
+
+6
+
+Relay Module Wiring (Fan, Fogger, LED Strip)
+
+7
+
+Complete Code for Real Hardware
+
+8
+
+How to Flash Code to ESP32 (Arduino IDE)
+
+9
+
+pH Sensor Calibration
+
+10
+
+Testing Checklist
+
+11
+
+Troubleshooting Common Problems
+
+12
+
+Master Wiring Reference Table
+
+Chapter 1 — What Changes: Simulation vs Real
+Hardware
+In Wokwi simulation, we used fake replacements because the real sensors were not
+available in the simulator. Now that you have your real components, this table shows
+exactly what is replacing what, and what changes.
+
+Sensors — What Changes
+Wokwi (Fake)
+
+Your Real Component
+
+Price (PKR)
+
+Key Change
+
+DHT22 sensor
+
+SHT31 Temperature +
+Humidity Sensor
+
+1,850
+
+Different library.
+Uses I2C (SDA/SCL)
+instead of 1 data wire.
+
+Potentiometer
+on D34
+
+SEN0161 pH Meter
+Kit V1
+
+11,900
+
+Connects to ADS1115.
+Needs calibration with
+buffer solution.
+
+Potentiometer
+on D35
+
+SEN0193 Soil
+Moisture Sensor
+
+2,380
+
+Connects to ADS1115.
+Probes go into substrate.
+
+Potentiometer
+on D32
+
+MH-Z19C CO2
+Sensor
+
+7,500
+
+Uses UART (TX/RX pins).
+Completely different
+from analog reading.
+
+Potentiometer
+on D33
+
+BH1750 Light
+Sensor GY-302
+
+280
+
+Uses I2C. Different
+library. Very accurate
+lux readings.
+
+No ADC chip
+
+ADS1115 16-bit
+ADC Chip
+
+800
+
+pH and Soil sensors
+connect through this
+for better accuracy.
+
+Actuators and Output — What Changes
+
+Wokwi (Fake)
+
+Your Real Component
+
+Price (PKR)
+
+Key Change
+
+Blue LED
+(Fan)
+
+PWM Fan 5V via
+4-Ch Relay
+
+1,050 + 980
+
+Real fan spins!
+Relay logic is INVERTED:
+LOW = ON, HIGH = OFF
+
+White LED
+(Fogger)
+
+Mist Maker 5V
+Ceramic Disc
+
+320 + 673
+
+Real mist comes out!
+Powered via relay
+channel 2.
+
+Yellow LED
+(Grow Light)
+
+LED Strip 12V
+Warm White
+
+280
+
+Real light turns on!
+12V from PSU via
+relay channel 3.
+
+Virtual OLED
+
+OLED 0.96 inch
+128x64
+
+850
+
+No change at all!
+Same wiring, same
+library, same code.
+
+No power
+circuit
+
+12V 2A PSU +
+AMS1117-5V x2
+
+260 + 50
+
+Powers everything.
+12V for LED strip,
+5V for ESP32 and fan.
+
+Good news: The OLED display is exactly the same component — same wiring, same
+library, same code. Zero changes needed for the screen!
+
+Chapter 2 — Understanding Your Real Sensors
+SHT31 — Temperature and Humidity Sensor (PKR 1,850)
+The SHT31 measures temperature and humidity at the same time. It is much more
+accurate than the DHT22 we used in simulation. It communicates using I2C — the same
+two wires (SDA and SCL) that the OLED screen uses. So it shares those wires with no
+problem.
+It can measure temperature from -40 to 125 degrees C, and humidity from 0% to 100%.
+For mushroom growing you need temperature between 20-28 degrees C and humidity
+above 75%.
+
+BH1750 — Light Intensity Sensor (PKR 280)
+The BH1750 measures light brightness in lux. It is a very small and cheap chip but gives
+very accurate readings from 1 lux (almost dark) up to 65,535 lux (bright sunlight). It also
+uses I2C — so it shares the same SDA and SCL wires as the SHT31 and OLED.
+
+ADS1115 — 16-bit Analog to Digital Converter (PKR 800)
+The ADS1115 is a helper chip. Your pH sensor and soil moisture sensor produce analog
+voltage signals. The ADS1115 reads those voltages with very high precision (16-bit = 0 to
+32,767 steps) — much better than the ESP32's own analog pins which only give 12-bit (0
+to 4,095 steps).
+The ADS1115 connects to the ESP32 via I2C, and the pH and soil sensors connect directly
+into the ADS1115 input channels (A0 and A1).
+
+SEN0161 — pH Sensor Kit (PKR 11,900)
+The SEN0161 has two parts: a glass probe and a signal board. You dip the glass probe
+into water or liquid. The signal board converts the pH reading into a voltage between 0 and
+3.3V. That voltage goes into ADS1115 channel A0, and the ESP32 reads it.
+pH 7 = neutral (pure water). Below 7 = acidic. Above 7 = alkaline. Mushrooms grow best in
+pH 5.5 to 7.5.
+This sensor MUST be calibrated with your pH buffer powder before it gives accurate
+readings. See Chapter 9 for calibration steps.
+
+SEN0193 — Soil Moisture Sensor (PKR 2,380)
+The SEN0193 has two metal probes that you push into the mushroom growing substrate
+(the material mushrooms grow in). It is capacitive — meaning it does NOT corrode over
+time. Wet substrate gives a low voltage. Dry substrate gives a high voltage. The signal
+goes into ADS1115 channel A1.
+
+MH-Z19C — CO2 Sensor (PKR 7,500)
+This sensor measures carbon dioxide (CO2) in the air. It works using infrared light — CO2
+absorbs infrared, and the sensor measures how much was absorbed.
+IMPORTANT — this sensor is VERY different from the simulation! In Wokwi we read
+a potentiometer with analogRead(). The real sensor communicates using UART
+serial protocol — it sends digital text data through TX and RX wires. The code is
+completely different for reading it. See Chapter 7 for the updated code.
+
+The sensor needs 5V power (not 3.3V). Healthy outdoor air = 400 ppm CO2. Fan turns on
+above 2,000 ppm. Alarm sounds above 5,000 ppm.
+
+Chapter 3 — The I2C Bus: 4 Sensors, 2 Wires
+Four of your components all use I2C communication: the SHT31, the BH1750, the
+ADS1115, and the OLED display. I2C is clever — all four devices share the SAME two
+wires. You do not need separate wires for each device.
+
+How Does I2C Work?
+Every I2C device has a unique address — like a house number. The ESP32 shouts a
+message on the shared wire (SDA) and includes the address at the start. Only the device
+with that address replies. The other devices on the same wire ignore the message.
+
+I2C Addresses of Your Devices
+Device
+
+I2C Address
+
+ADDR Pin Setting
+
+SDA Wire
+
+SCL Wire
+
+SHT31
+(Temp/Humidity)
+
+0x44
+
+ADDR pin to GND
+
+GPIO 21
+
+GPIO 22
+
+BH1750
+(Light Sensor)
+
+0x23
+
+ADDR pin to GND
+
+GPIO 21
+
+GPIO 22
+
+ADS1115
+(ADC Chip)
+
+0x48
+
+ADDR pin to GND
+
+GPIO 21
+
+GPIO 22
+
+OLED Display
+(SSD1306)
+
+0x3C
+
+Fixed — no pin
+
+GPIO 21
+
+GPIO 22
+
+All four devices connect to GPIO 21 (SDA) and GPIO 22 (SCL) on the ESP32. Connect
+them in parallel — like plugging multiple devices into the same power strip.
+
+I2C Wiring Diagram (Text Version)
+ESP32 GPIO 21 (SDA) ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ ■ ■ ■
+SHT31 BH1750 ADS1115 OLED SDA pin SDA pin SDA pin SDA pin ESP32 GPIO 22 (SCL)
+■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ ■ ■ ■ SHT31 BH1750 ADS1115
+OLED SCL pin SCL pin SCL pin SCL pin
+
+Chapter 4 — Complete Real Hardware Wiring
+Below is every single component with every pin labeled clearly. Wire color is included so
+your breadboard stays organized and easy to follow.
+
+Sensor 1: SHT31 Temperature + Humidity Sensor
+SHT31 Pin
+
+Connect To (ESP32)Wire Color
+
+What This Does
+
+VCC
+
+3.3V
+
+Red
+
+Power — gives sensor 3.3 volts
+
+GND
+
+GND
+
+Black
+
+Ground — negative connection
+
+SDA
+
+GPIO 21
+
+Blue
+
+I2C data — sends readings to ESP32
+
+SCL
+
+GPIO 22
+
+Yellow
+
+I2C clock — timing signal
+
+ADDR
+
+GND
+
+Black
+
+Sets address to 0x44 — tie to GND
+
+ALERT
+
+Leave empty
+
+—
+
+Not used in our project
+
+Sensor 2: BH1750 Light Sensor
+BH1750 Pin Connect To (ESP32)Wire Color
+
+What This Does
+
+VCC
+
+3.3V
+
+Red
+
+Power — gives sensor 3.3 volts
+
+GND
+
+GND
+
+Black
+
+Ground — negative connection
+
+SDA
+
+GPIO 21
+
+Blue
+
+Shared I2C data wire — same as SHT31 and OLED
+
+SCL
+
+GPIO 22
+
+Yellow
+
+Shared I2C clock wire — same as SHT31 and OLED
+
+ADDR
+
+GND
+
+Black
+
+Sets address to 0x23 — tie to GND
+
+Component 3: ADS1115 ADC Chip
+ADS1115 PinConnect To
+
+Wire Color
+
+What This Does
+
+VDD
+
+ESP32 3.3V
+
+Red
+
+Power for the ADC chip
+
+GND
+
+ESP32 GND
+
+Black
+
+Ground connection
+
+SDA
+
+ESP32 GPIO 21
+
+Blue
+
+Shared I2C data wire
+
+SCL
+
+ESP32 GPIO 22
+
+Yellow
+
+Shared I2C clock wire
+
+ADDR
+
+GND
+
+Black
+
+Sets address to 0x48
+
+A0
+
+SEN0161 Signal Out (Po pin)
+
+Orange
+
+Receives pH sensor voltage signal
+
+A1
+
+SEN0193 AOUT pin
+
+Orange
+
+Receives soil moisture voltage
+
+A2
+
+Leave empty
+
+—
+
+Spare — not used
+
+A3
+
+Leave empty
+
+—
+
+Spare — not used
+
+Sensor 4: SEN0161 pH Sensor
+The SEN0161 kit has two parts: a signal board (the circuit board) and a glass BNC probe.
+Wire the signal board as follows:
+SEN0161 Pin
+
+Connect To
+
+Wire Color
+
+What This Does
+
+VCC (signal board)
+
+5V from AMS1117
+
+Red
+
+Board needs 5V to work (not 3.3V)
+
+GND (signal board)
+
+Common GND
+
+Black
+
+Ground connection
+
+Signal OUT (Po pin)
+
+ADS1115 A0 pin
+
+Orange
+
+Sends pH voltage to ADC chip
+
+BNC socket
+
+Plug in glass probe
+
+—
+
+Physical connector — just plug in probe
+
+Remember: This sensor needs calibration! See Chapter 9 before using it.
+
+Sensor 5: SEN0193 Soil Moisture Sensor
+Push the two metal probes into the mushroom growing substrate. Wire the circuit board as
+follows:
+SEN0193 Pin Connect To
+
+Wire Color
+
+What This Does
+
+VCC
+
+ESP32 3.3V
+
+Red
+
+Power — 3.3V works fine
+
+GND
+
+ESP32 GND
+
+Black
+
+Ground connection
+
+AOUT
+
+ADS1115 A1 pin
+
+Orange
+
+Sends soil voltage to ADC chip
+
+Sensor 6: MH-Z19C CO2 Sensor
+This sensor uses UART serial communication — completely different from reading a
+potentiometer. It needs 5V power. Wire it like this:
+MH-Z19C PinConnect To (ESP32) Wire Color
+
+What This Does
+
+Vin
+
+5V from AMS1117
+
+Red
+
+Needs 5V — 3.3V will NOT work!
+
+GND
+
+ESP32 GND
+
+Black
+
+Shared ground
+
+TX
+
+ESP32 GPIO 16
+
+Green
+
+Sensor sends CO2 data to ESP32
+
+RX
+
+ESP32 GPIO 17
+
+Blue
+
+ESP32 sends commands to sensor
+
+PWM
+
+Leave empty
+
+—
+
+Not used — we use UART instead
+
+HD
+
+Leave empty
+
+—
+
+Calibration pin — leave unconnected
+
+TX and RX are CROSSED: sensor TX connects to ESP32 RX (GPIO 16). Sensor RX
+connects to ESP32 TX (GPIO 17). This is normal for UART.
+
+Display: OLED 0.96 inch (Same as Simulation!)
+No changes at all from simulation. Same wiring, same library, same code.
+OLED Pin
+
+Connect To (ESP32)Wire Color
+
+What This Does
+
+VCC
+
+3.3V
+
+Red
+
+Power for the display
+
+GND
+
+GND
+
+Black
+
+Ground connection
+
+SDA
+
+GPIO 21
+
+Blue
+
+Shared I2C data — same as all other I2C devices
+
+SCL
+
+GPIO 22
+
+Yellow
+
+Shared I2C clock — same as all other I2C devices
+
+OLED is identical to simulation — no changes needed!
+
+Chapter 5 — Power Supply Wiring
+Your project needs three voltage levels: 12V, 5V, and 3.3V. The 12V adapter plugs into the
+wall. The AMS1117-5V regulators convert 12V down to 5V. The ESP32 has a built-in
+regulator that converts 5V down to 3.3V for the sensors.
+
+Voltage Levels and What They Power
+Voltage
+
+Source
+
+Powers These Components
+
+12V
+
+Wall adapter (12V 2A PSU)
+
+LED Strip 12V, Relay COM terminals, Input to AMS1117
+
+5V
+
+AMS1117-5V regulator #1
+
+ESP32 VIN pin, Relay VCC, MH-Z19C, SEN0161 pH board
+
+5V
+
+AMS1117-5V regulator #2
+
+PWM Fan (via relay), Mist Maker ceramic disc (via relay)
+
+3.3V
+
+ESP32 built-in 3.3V pin
+
+SHT31, BH1750, ADS1115, SEN0193, OLED display
+
+AMS1117-5V Regulator Wiring
+You have two AMS1117-5V chips. Wire each one the same way:
+AMS1117 Pin
+
+Connect To
+
+Wire
+
+What It Does
+
+INPUT (IN)
+
+12V from PSU +
+
+Red
+
+Receives 12V from the wall adapter
+
+OUTPUT (OUT) 5V rail to devices
+
+Red
+
+Outputs stable 5V to power components
+
+GND
+
+Black
+
+Ground — shared with all components
+
+Common GND rail
+
+Add a 10uF capacitor between the OUTPUT pin and GND on each AMS1117 regulator.
+This smooths out any voltage fluctuations and makes the 5V more stable. It is a small
+polarized capacitor — positive leg to OUTPUT, negative leg to GND.
+
+Chapter 6 — Relay Module Wiring
+The 4-channel relay module is the bridge between your low-power ESP32 and the
+high-power devices (fan, fogger, LED strip). The relay has two sides: the control side
+(connects to ESP32) and the switch side (connects to the actual devices).
+IMPORTANT — Relay Logic is Inverted!
+
+Most opto-isolated relay modules (like yours) are ACTIVE LOW. This means: sending
+LOW (0) from ESP32 turns the relay ON, and sending HIGH (1) turns it OFF. This is the
+opposite of an LED! The code in Chapter 7 already handles this correctly.
+
+Relay Control Side — Connect to ESP32
+Relay Pin
+
+Connect To
+
+Wire Color
+
+What This Does
+
+VCC
+
+5V from AMS1117
+
+Red
+
+Power for relay coil circuits
+
+GND
+
+ESP32 GND
+
+Black
+
+Common ground
+
+IN1
+
+ESP32 GPIO 26
+
+Blue
+
+Fan control — LOW turns fan ON
+
+IN2
+
+ESP32 GPIO 27
+
+Purple
+
+Fogger control — LOW turns fogger ON
+
+IN3
+
+ESP32 GPIO 14
+
+Yellow
+
+LED strip control — LOW turns light ON
+
+IN4
+
+Leave empty
+
+—
+
+Spare channel — not used
+
+Relay Switch Side — Connect to High Power Devices
+Each relay channel has 3 terminals on the switch side: COM (Common — always
+connected to power), NO (Normally Open — connects when relay is ON), NC (Normally
+Closed — connects when relay is OFF). We always use COM and NO.
+Channel
+
+COM Terminal
+
+NO Terminal
+
+Device Connected
+
+CH1 — Fan
+
+5V from AMS1117 #2
+
+PWM Fan red wire (+)
+
+Fan gets 5V and spins when CH1 activates
+
+CH2 — Fogger5V from AMS1117 #2
+
+Mist Maker + wire
+
+Ceramic disc gets 5V and makes mist when CH2 activat
+
+CH3 — LED Strip
+12V from PSU +
+
+LED Strip red wire (+)
+
+LED strip gets 12V and lights up when CH3 activates
+
+CH4 — SpareNot connected
+
+Not connected
+
+Available for a future device
+
+All GND / negative wires from the fan, fogger, and LED strip connect to the common GND
+rail shared with the ESP32 and PSU.
+
+Chapter 7 — Complete Code for Real Hardware
+Libraries to Install First
+Open Arduino IDE. Go to Tools → Manage Libraries. Search for and install each library in
+this list:
+Library Name
+
+Search This
+
+Used For
+
+Adafruit SHT31 Library
+
+Adafruit SHT31
+
+SHT31 temperature and humidity
+
+Adafruit BusIO
+
+Adafruit BusIO
+
+Required by SHT31 library
+
+BH1750
+
+BH1750 Christopher Laws
+
+Light sensor reading
+
+Adafruit ADS1X15
+
+Adafruit ADS1X15
+
+ADS1115 ADC chip reading
+
+MHZ19
+
+MHZ19 Jonathan Dempsey
+
+CO2 sensor UART reading
+
+Adafruit SSD1306
+
+Adafruit SSD1306
+
+OLED display
+
+Adafruit GFX Library
+
+Adafruit GFX
+
+Required by SSD1306
+
+PubSubClient
+
+PubSubClient Nick OLeary
+
+MQTT internet publishing
+
+ArduinoJson
+
+ArduinoJson Benoit Blanchon JSON data formatting
+
+The Complete Code — Copy This Into Arduino IDE
+Before uploading, find the WiFi section near the top and replace YOUR_WIFI_NAME and
+YOUR_WIFI_PASS with your real WiFi details.
+
+Part 1 of 6 — Libraries and Pin Definitions
+// ================================================ // IoT MUSHROOM SYSTEM — Real
+Hardware Code // ESP32-WROVER-E with all real BOM sensors //
+================================================ // --- Libraries --- #include #include //
+SHT31 sensor #include // Light sensor #include // ADS1115 ADC #include // CO2 sensor #include // UART
+for CO2 #include // OLED graphics #include // OLED driver #include #include #include // --- WiFi
+(CHANGE THESE!) --- const char* ssid = "YOUR_WIFI_NAME"; const char* password =
+"YOUR_WIFI_PASS"; // --- MQTT --- const char* mqtt_server = "broker.hivemq.com"; const char*
+mqtt_topic = "mushroom/fyp/sensors"; // --- I2C Pins --- #define SDA_PIN 21 #define SCL_PIN 22 // --CO2 Sensor UART Pins --- #define CO2_RX 16 // ESP32 receives from CO2 sensor TX #define CO2_TX
+17 // ESP32 sends to CO2 sensor RX // --- Actuator Pins --- #define PIN_FAN 26 #define PIN_FOGGER
+27 #define PIN_LIGHT 14 #define PIN_BUZZER 25 // --- Relay Logic (INVERTED: LOW = ON) --- #define
+RELAY_ON LOW #define RELAY_OFF HIGH // --- Thresholds --- #define TEMP_MAX 28.0 #define
+
+HUMIDITY_MIN 75.0 #define CO2_FAN_ON 2000 #define CO2_ALARM 5000 #define
+LIGHT_CYCLE_MS 43200000UL // 12 hours
+
+Part 2 of 6 — Object and Variable Declarations
+// --- Sensor Objects --- Adafruit_SHT31 sht31; BH1750 lightMeter; Adafruit_ADS1115 ads;
+HardwareSerial co2Serial(2); MHZ19 myMHZ19; Adafruit_SSD1306 display(128, 64, &Wire;, -1); // --WiFi and MQTT Objects --- WiFiClient espClient; PubSubClient mqtt(espClient); // --- Sensor Values --float temperature = 0, humidity = 0, luxValue = 0; float phValue = 7.0, soilPercent = 50; int co2PPM = 400;
+bool lightOn = false; // --- Timers --- unsigned long lastRead = 0; unsigned long lastMQTT = 0; unsigned
+long lastLight = 0; // --- pH Calibration Offset --- // Adjust this after calibrating with pH buffer solution float
+pH_offset = 0.0;
+
+Part 3 of 6 — Setup Function
+void setup() { Serial.begin(115200); Serial.println("=== Mushroom IoT FYP — Real Hardware ==="); //
+Start I2C Wire.begin(SDA_PIN, SCL_PIN); // SHT31 if (!sht31.begin(0x44)) { Serial.println("ERROR:
+SHT31 not found — check wiring!"); } else { Serial.println("SHT31 ready"); } // BH1750 if
+(!lightMeter.begin(BH1750::CONTINUOUS_HIGH_RES_MODE)) { Serial.println("ERROR: BH1750 not
+found — check wiring!"); } else { Serial.println("BH1750 ready"); } // ADS1115 if (!ads.begin()) {
+Serial.println("ERROR: ADS1115 not found — check wiring!"); } else { ads.setGain(GAIN_ONE);
+Serial.println("ADS1115 ready"); } // MH-Z19C CO2 sensor co2Serial.begin(9600, SERIAL_8N1,
+CO2_RX, CO2_TX); myMHZ19.begin(co2Serial); myMHZ19.autoCalibration(false);
+Serial.println("MH-Z19C CO2 sensor ready"); // OLED display if
+(!display.begin(SSD1306_SWITCHCAPVCC, 0x3C)) { Serial.println("ERROR: OLED not found — check
+wiring!"); } else { display.clearDisplay(); display.setTextColor(WHITE); display.setTextSize(1);
+display.setCursor(0, 0); display.println("Mushroom IoT FYP"); display.println("Starting up...");
+display.display(); Serial.println("OLED ready"); } // Set actuator pins as outputs, start all OFF
+pinMode(PIN_FAN, OUTPUT); digitalWrite(PIN_FAN, RELAY_OFF); pinMode(PIN_FOGGER, OUTPUT);
+digitalWrite(PIN_FOGGER, RELAY_OFF); pinMode(PIN_LIGHT, OUTPUT); digitalWrite(PIN_LIGHT,
+RELAY_OFF); pinMode(PIN_BUZZER, OUTPUT); digitalWrite(PIN_BUZZER, LOW); // Connect to WiFi
+Serial.print("Connecting to WiFi: "); Serial.println(ssid); WiFi.begin(ssid, password); while (WiFi.status() !=
+WL_CONNECTED) { delay(500); Serial.print("."); } Serial.println(""); Serial.print("WiFi connected! IP
+address: "); Serial.println(WiFi.localIP()); // Connect to MQTT mqtt.setServer(mqtt_server, 1883);
+reconnectMQTT(); lastLight = millis(); Serial.println("=== All systems ready! ==="); }
+
+Part 4 of 6 — Reading All Sensors
+void readAllSensors() { // SHT31: Temperature and Humidity temperature = sht31.readTemperature();
+humidity = sht31.readHumidity(); if (isnan(temperature)) temperature = 0; if (isnan(humidity)) humidity = 0;
+// BH1750: Light intensity in lux luxValue = lightMeter.readLightLevel(); if (luxValue < 0) luxValue = 0; //
+ADS1115 channel A0: pH Sensor (SEN0161) int16_t rawPH = ads.readADC_SingleEnded(0); float voltPH
+= ads.computeVolts(rawPH); // Formula: pH 7 = 2.5V, every 0.18V change = 1 pH unit phValue = 7.0 +
+((2.5 - voltPH) / 0.18) + pH_offset; phValue = constrain(phValue, 0.0, 14.0); // ADS1115 channel A1: Soil
+Moisture (SEN0193) int16_t rawSoil = ads.readADC_SingleEnded(1); float voltSoil =
+ads.computeVolts(rawSoil); // SEN0193: ~3.0V = completely dry, ~1.2V = fully wet soilPercent =
+map((int)(voltSoil * 100), 120, 300, 100, 0); soilPercent = constrain(soilPercent, 0, 100); // MH-Z19C: CO2
+in parts per million (ppm) co2PPM = myMHZ19.getCO2(); if (co2PPM <= 0) co2PPM = 400; // Print
+everything to Serial Monitor Serial.println("-----------------------------------"); Serial.printf("Temperature : %.1f
+C\n", temperature); Serial.printf("Humidity : %.1f %%\n", humidity); Serial.printf("CO2 : %d ppm\n",
+co2PPM); Serial.printf("pH : %.2f\n", phValue); Serial.printf("Soil : %.0f %%\n", soilPercent);
+Serial.printf("Light : %.1f lux\n", luxValue); Serial.println("-----------------------------------"); }
+
+Part 5 of 6 — Controlling Actuators and Updating Display
+void controlActuators() { // FAN: Turn ON if CO2 too high OR temperature too high if (co2PPM >
+CO2_FAN_ON || temperature > TEMP_MAX) { digitalWrite(PIN_FAN, RELAY_ON); Serial.println(">>
+FAN is ON"); } else { digitalWrite(PIN_FAN, RELAY_OFF); } // FOGGER: Turn ON if humidity is too low if
+(humidity < HUMIDITY_MIN) { digitalWrite(PIN_FOGGER, RELAY_ON); Serial.println(">> FOGGER is
+ON"); } else { digitalWrite(PIN_FOGGER, RELAY_OFF); } // GROW LIGHT: Toggle every 12 hours
+automatically if (millis() - lastLight >= LIGHT_CYCLE_MS) { lightOn = !lightOn; lastLight = millis();
+digitalWrite(PIN_LIGHT, lightOn ? RELAY_ON : RELAY_OFF); Serial.printf(">> LIGHT is %s\n", lightOn ?
+"ON" : "OFF"); } // BUZZER ALARM: Critical emergency conditions if (co2PPM > CO2_ALARM ||
+temperature > 32.0) { digitalWrite(PIN_BUZZER, HIGH); delay(500); digitalWrite(PIN_BUZZER, LOW);
+Serial.println("!! CRITICAL ALARM !!"); } } void updateOLED() { display.clearDisplay();
+display.setTextSize(1); display.setCursor(0, 0); display.println("= Mushroom FYP ="); display.setCursor(0,
+10); display.printf("T:%.1fC H:%.0f%%", temperature, humidity); display.setCursor(0, 20);
+display.printf("CO2: %d ppm", co2PPM); display.setCursor(0, 30); display.printf("pH:%.1f Soil:%.0f%%",
+phValue, soilPercent); display.setCursor(0, 40); display.printf("Light: %.0f lux", luxValue);
+display.setCursor(0, 52); display.printf("F:%s Fg:%s L:%s", digitalRead(PIN_FAN) == RELAY_ON ? "ON "
+: "OFF", digitalRead(PIN_FOGGER) == RELAY_ON ? "ON " : "OFF", digitalRead(PIN_LIGHT) ==
+RELAY_ON ? "ON " : "OFF"); display.display(); }
+
+Part 6 of 6 — MQTT Publishing and Main Loop
+void reconnectMQTT() { while (!mqtt.connected()) { Serial.print("Connecting to MQTT broker..."); String id
+= "MushroomFYP-" + String(random(0xffff), HEX); if (mqtt.connect(id.c_str())) { Serial.println("
+Connected!"); } else { Serial.println(" Failed. Retrying in 3 seconds..."); delay(3000); } } } void
+publishMQTT() { if (!mqtt.connected()) reconnectMQTT(); StaticJsonDocument<300> doc;
+doc["temperature"] = temperature; doc["humidity"] = humidity; doc["co2"] = co2PPM; doc["ph"] = phValue;
+doc["soil"] = soilPercent; doc["lux"] = luxValue; doc["fan"] = (digitalRead(PIN_FAN) == RELAY_ON);
+doc["fogger"] = (digitalRead(PIN_FOGGER) == RELAY_ON); doc["light"] = (digitalRead(PIN_LIGHT) ==
+RELAY_ON); char payload[300]; serializeJson(doc, payload); mqtt.publish(mqtt_topic, payload);
+Serial.println(">> MQTT data published"); } // --- Main Loop --- void loop() { mqtt.loop(); unsigned long now
+= millis(); // Read sensors and update display every 3 seconds if (now - lastRead >= 3000) { lastRead =
+now; readAllSensors(); controlActuators(); updateOLED(); } // Publish to MQTT every 10 seconds if (now lastMQTT >= 10000) { lastMQTT = now; publishMQTT(); } }
+
+Chapter 8 — How to Flash Code to Your ESP32
+Step 1 — Install Arduino IDE
+Download Arduino IDE from arduino.cc/en/software and install it on your computer.
+Step 2 — Add ESP32 Board Support
+Open Arduino IDE. Go to File → Preferences. In the 'Additional Board Manager URLs' box,
+paste this link and click OK: https://raw.githubusercontent.com/espressif/arduino-esp32/gh
+-pages/package_esp32_index.json Then go to Tools → Board → Board Manager. Search
+for esp32 (by Espressif Systems). Click Install. Wait a few minutes.
+Step 3 — Select the Right Board
+Go to Tools → Board → ESP32 Arduino → select 'ESP32 Dev Module'. Then go to Tools
+→ Port → select the COM port that appears when you plug in your ESP32.
+Step 4 — Install All Libraries
+Go to Tools → Manage Libraries. Search for and install each library listed in Chapter 7.
+Step 5 — Paste and Edit the Code
+Create a new sketch (File → New). Delete the default code. Paste the complete code from
+Chapter 7. Find the two WiFi lines near the top and change YOUR_WIFI_NAME and
+YOUR_WIFI_PASS.
+Step 6 — Upload
+Click the Upload button (arrow pointing right). If it shows 'Connecting...' and stops — hold
+the BOOT button on your ESP32 while clicking Upload, then release BOOT when
+Uploading starts. When done, open Tools → Serial Monitor at 115200 baud.
+Expected output in Serial Monitor after successful flash: === Mushroom IoT FYP - Real Hardware ===
+SHT31 ready BH1750 ready ADS1115 ready MH-Z19C CO2 sensor ready OLED ready Connecting to
+WiFi: YourNetworkName ........ WiFi connected! IP address: 192.168.1.105 Connecting to MQTT broker...
+Connected! === All systems ready! === Temperature : 24.3 C Humidity : 68.2 % CO2 : 612 ppm pH : 6.82
+Soil : 54 % Light : 320.0 lux
+
+Chapter 9 — pH Sensor Calibration
+The SEN0161 pH sensor must be calibrated before use. Without calibration, readings
+could be wrong by 1 to 2 pH units. You have pH 4.01 and pH 6.86 buffer powder in your
+BOM — here is exactly how to use them.
+1. Dissolve the pH 6.86 buffer powder in 250 ml of clean water. Stir well.
+2. Rinse the glass pH probe with clean distilled water.
+3. Dip the glass probe into the pH 6.86 buffer solution.
+4. Wait 2 to 3 minutes for the reading to stabilize.
+5. Open the Serial Monitor and look at the pH value being printed.
+6. If the reading shows exactly 6.86 — great! No adjustment needed.
+7. If the reading is different — find the small blue trimmer pot on the SEN0161 board.
+8. Use a small flat screwdriver to slowly turn the trimmer pot clockwise or anti-clockwise.
+9. Watch the Serial Monitor. Stop turning when it reads 6.86.
+10. Rinse the probe. Now test with pH 4.01 buffer solution to verify accuracy.
+11. If the pH 4.01 reading is off by a fixed amount, use the software offset below.
+
+Software Fine-Tuning (if still slightly off)
+If after hardware adjustment the readings are still a little off, you can fix it in code by
+changing this one line:
+float pH_offset = 0.0; // Change this number
+
+Example: if pH 6.86 buffer reads as 7.10 in Serial Monitor, then change pH_offset to -0.24
+(because 6.86 minus 7.10 equals -0.24). Upload the code again and the readings will shift
+down by 0.24.
+
+Chapter 10 — Testing Checklist
+Test each component one by one after wiring. Tick off each item as you confirm it works.
+Done?
+
+Test
+
+How to Test
+
+Expected Result
+
+[]
+
+Power supply
+
+Turn on 12V adapter. Measure 5V output
+5Vwith
+on AMS1117
+multimeter.
+output, 3.3V on ESP32 3V3 pin.
+
+[]
+
+SHT31 sensor
+
+Flash code, open Serial Monitor.
+
+[]
+
+BH1750 sensor
+
+Cover sensor with hand, check Serial Monitor.
+Lux drops near zero. Uncover and it rises again.
+
+[]
+
+ADS1115 chip
+
+Check Serial Monitor at startup.
+
+[]
+
+pH sensor
+
+Dip probe in water. Check Serial Monitor.
+pH reading between 6 and 8 (calibrate if not).
+
+[]
+
+Soil sensor
+
+Push probes into dry substrate, then wet
+Value
+substrate.
+clearly changes between dry and wet.
+
+[]
+
+CO2 sensor
+
+Breathe near the sensor inlet hole.
+
+CO2 value rises above 400 ppm when you breathe on it.
+
+[]
+
+OLED display
+
+Power on the system.
+
+Screen lights up and shows all sensor values.
+
+[]
+
+Relay Fan
+
+Breathe on CO2 sensor to push above You
+2000hear
+ppm.the relay click and fan starts spinning.
+
+[]
+
+Relay Fogger
+
+Wait for humidity to drop below 75% in Relay
+a dry room.
+clicks and mist maker starts producing mist.
+
+[]
+
+Relay LED Strip
+
+Wait 12 hours (or temporarily lower timer
+LED
+to 10
+strip
+sec
+turns
+for testing).
+on, then off after next cycle.
+
+[]
+
+Buzzer alarm
+
+Breathe hard on CO2 sensor for 30 seconds.
+Buzzer beeps and CRITICAL ALARM appears in Serial Mo
+
+[]
+
+MQTT publishing
+
+Watch Serial Monitor after 10 seconds.Sees '>> MQTT data published' every 10 seconds.
+
+Shows real temperature (around 20-30 C) and humidity.
+
+No ADS1115 error message appears.
+
+Chapter 11 — Troubleshooting Common Problems
+Problem
+
+Most Likely Cause
+
+Serial Monitor shows nothingWrong baud rate
+
+How to Fix
+Set Serial Monitor to 115200 baud at the bottom of the window.
+
+SHT31 not found error
+
+Wrong wiring or ADDR pin issue
+Check SDA goes to GPIO 21, SCL to GPIO 22. Make sure ADDR pin is c
+
+BH1750 not found error
+
+Address conflict or loose wireConfirm ADDR pin to GND (address 0x23). Re-check SDA and SCL conn
+
+ADS1115 not found error
+
+ADDR pin not connected
+
+Connect ADDR pin to GND for address 0x48. Check I2C wires.
+
+CO2 always shows 0 or -1 TX and RX wires are swapped
+Swap the connections — sensor TX to GPIO 16, sensor RX to GPIO 17.
+
+pH reads wildly or jumps around
+Probe not calibrated or looseCalibrate with buffer solution (Chapter 9). Check BNC probe is firmly plug
+
+Fan or relay does not click Relay not getting 5V, or logicConfirm
+wrong relay VCC gets 5V from AMS1117. Remember LOW = ON for thi
+Fan always stays ON
+
+RELAY_ON / RELAY_OFF not
+Make
+defined
+sure correctly
+RELAY_ON = LOW and RELAY_OFF = HIGH in the code defi
+
+Upload fails in Arduino IDE BOOT button not held duringHold
+upload
+the BOOT button on ESP32 when you click Upload. Release when 'U
+WiFi keeps failing
+
+Wrong password or 5GHz network
+ESP32 only supports 2.4 GHz WiFi. Check your router is 2.4 GHz and pa
+
+MQTT not connecting
+
+No internet or wrong broker Make sure WiFi is connected first. Check broker.hivemq.com is reachable
+
+ESP32 keeps restarting (watchdog)
+Power supply too weak
+
+Use 5V from AMS1117 regulator, not USB port. USB may not supply enou
+
+OLED shows only white or garbage
+I2C address wrong
+
+Most SSD1306 OLEDs use 0x3C. If not working, try 0x3D in the display.b
+
+Chapter 12 — Master Wiring Reference Table
+All 46 connections in one place. Use this as your checklist while wiring on the breadboard.
+
+#
+
+From
+
+To
+
+Color
+
+1
+
+SHT31 VCC
+
+ESP32 3.3V
+
+Red
+
+2
+
+SHT31 GND
+
+ESP32 GND
+
+Black
+
+3
+
+SHT31 SDA
+
+ESP32 GPIO 21
+
+Blue
+
+4
+
+SHT31 SCL
+
+ESP32 GPIO 22
+
+Yellow
+
+5
+
+SHT31 ADDR
+
+GND rail
+
+Black
+
+6
+
+BH1750 VCC
+
+ESP32 3.3V
+
+Red
+
+7
+
+BH1750 GND
+
+ESP32 GND
+
+Black
+
+8
+
+BH1750 SDA
+
+ESP32 GPIO 21 (shared)
+
+Blue
+
+9
+
+BH1750 SCL
+
+ESP32 GPIO 22 (shared)
+
+Yellow
+
+10
+
+BH1750 ADDR
+
+GND rail
+
+Black
+
+11
+
+ADS1115 VDD
+
+ESP32 3.3V
+
+Red
+
+12
+
+ADS1115 GND
+
+ESP32 GND
+
+Black
+
+13
+
+ADS1115 SDA
+
+ESP32 GPIO 21 (shared)
+
+Blue
+
+14
+
+ADS1115 SCL
+
+ESP32 GPIO 22 (shared)
+
+Yellow
+
+15
+
+ADS1115 ADDR
+
+GND rail
+
+Black
+
+16
+
+ADS1115 A0
+
+SEN0161 Signal Out (Po)
+
+Orange
+
+17
+
+ADS1115 A1
+
+SEN0193 AOUT
+
+Orange
+
+18
+
+SEN0161 VCC
+
+5V from AMS1117 #1
+
+Red
+
+19
+
+SEN0161 GND
+
+GND rail
+
+Black
+
+20
+
+SEN0193 VCC
+
+ESP32 3.3V
+
+Red
+
+21
+
+SEN0193 GND
+
+GND rail
+
+Black
+
+22
+
+MH-Z19C Vin
+
+5V from AMS1117 #1
+
+Red
+
+23
+
+MH-Z19C GND
+
+GND rail
+
+Black
+
+24
+
+MH-Z19C TX
+
+ESP32 GPIO 16
+
+Green
+
+25
+
+MH-Z19C RX
+
+ESP32 GPIO 17
+
+Blue
+
+#
+
+From
+
+To
+
+Color
+
+26
+
+OLED VCC
+
+ESP32 3.3V
+
+Red
+
+27
+
+OLED GND
+
+GND rail
+
+Black
+
+28
+
+OLED SDA
+
+ESP32 GPIO 21 (shared)
+
+Blue
+
+29
+
+OLED SCL
+
+ESP32 GPIO 22 (shared)
+
+Yellow
+
+30
+
+Relay VCC
+
+5V from AMS1117 #1
+
+Red
+
+31
+
+Relay GND
+
+GND rail
+
+Black
+
+32
+
+Relay IN1
+
+ESP32 GPIO 26
+
+Blue
+
+33
+
+Relay IN2
+
+ESP32 GPIO 27
+
+Purple
+
+34
+
+Relay IN3
+
+ESP32 GPIO 14
+
+Yellow
+
+35
+
+Relay CH1 COM
+
+5V from AMS1117 #2
+
+Red (thick)
+
+36
+
+Relay CH1 NO
+
+PWM Fan + wire
+
+Red
+
+37
+
+Relay CH2 COM
+
+5V from AMS1117 #2
+
+Red (thick)
+
+38
+
+Relay CH2 NO
+
+Mist Maker + wire
+
+Red
+
+39
+
+Relay CH3 COM
+
+12V PSU positive
+
+Red (thick)
+
+40
+
+Relay CH3 NO
+
+LED Strip + wire
+
+Red
+
+41
+
+Buzzer +
+
+ESP32 GPIO 25
+
+Red
+
+42
+
+Buzzer -
+
+GND rail
+
+Black
+
+43
+
+AMS1117 #1 IN
+
+12V PSU positive
+
+Red (thick)
+
+44
+
+AMS1117 #1 OUT
+
+5V rail (ESP32, relay, CO2)
+
+Red
+
+45
+
+AMS1117 #2 IN
+
+12V PSU positive
+
+Red (thick)
+
+46
+
+AMS1117 #2 OUT
+
+5V rail (fan, fogger)
+
+Red
+
+47
+
+All GND connections
+
+Common GND rail
+
+Black
+
+You are ready to build! Follow each chapter step by step. Your simulation proved
+the logic works — now it comes to life on real hardware. Good luck with your Final
+Year Project! Total Budget: PKR 36,407
+
+

@@ -1,0 +1,127 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36" version="29.6.1">
+  <diagram name="IoT Use Case Diagram" id="mushroom-iot-usecase">
+    <mxGraphModel dx="2037" dy="1084" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;" value="&lt;b&gt;&lt;font style=&quot;font-size: 20px;&quot;&gt;Use Case Diagram — IoT Based Morel Mushroom Cultivation System&lt;/font&gt;&lt;/b&gt;" vertex="1">
+          <mxGeometry height="45" width="1400" x="100" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="boundary" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#000000;strokeWidth=3;verticalAlign=top;spacingTop=10;fontSize=16;fontStyle=1;" value="&lt;b&gt;&lt;font style=&quot;font-size: 16px;&quot;&gt;IoT Morel Mushroom Cultivation System&lt;/font&gt;&lt;/b&gt;" vertex="1">
+          <mxGeometry height="930" width="1050" x="300" y="75" as="geometry" />
+        </mxCell>
+        <mxCell id="uc1" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=2.5;fontSize=14;" value="&lt;b&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;Read Temperature&lt;br&gt;&amp;amp; Humidity&lt;/font&gt;&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size: 11px;&quot;&gt;SHT31&lt;/font&gt;" vertex="1">
+          <mxGeometry height="90" width="230" x="340" y="110" as="geometry" />
+        </mxCell>
+        <mxCell id="uc2" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=2.5;fontSize=14;" value="&lt;b&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;Read Soil Moisture&lt;/font&gt;&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size: 11px;&quot;&gt;SEN0193 + ADS1115&lt;/font&gt;" vertex="1">
+          <mxGeometry height="90" width="230" x="340" y="240" as="geometry" />
+        </mxCell>
+        <mxCell id="uc3" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=2.5;fontSize=14;" value="&lt;b&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;Read pH Level&lt;/font&gt;&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size: 11px;&quot;&gt;SEN0161 + ADS1115&lt;/font&gt;" vertex="1">
+          <mxGeometry height="90" width="230" x="340" y="370" as="geometry" />
+        </mxCell>
+        <mxCell id="uc4" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=2.5;fontSize=14;" value="&lt;b&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;Read CO2 Level&lt;/font&gt;&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size: 11px;&quot;&gt;MH-Z19C&lt;/font&gt;" vertex="1">
+          <mxGeometry height="90" width="230" x="340" y="500" as="geometry" />
+        </mxCell>
+        <mxCell id="uc5" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=2.5;fontSize=14;" value="&lt;b&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;Read Light Intensity&lt;/font&gt;&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size: 11px;&quot;&gt;BH1750&lt;/font&gt;" vertex="1">
+          <mxGeometry height="90" width="230" x="340" y="630" as="geometry" />
+        </mxCell>
+        <mxCell id="uc6" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;strokeWidth=2.5;fontSize=14;" value="&lt;b&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;Check Thresholds&lt;br&gt;&amp;amp; Decide Action&lt;/font&gt;&lt;/b&gt;" vertex="1">
+          <mxGeometry height="90" width="250" x="680" y="350" as="geometry" />
+        </mxCell>
+        <mxCell id="uc7" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;strokeWidth=2.5;fontSize=14;" value="&lt;b&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;Activate PWM Fan 5V&lt;/font&gt;&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size: 11px;&quot;&gt;via 4-Ch Relay&lt;/font&gt;" vertex="1">
+          <mxGeometry height="90" width="250" x="1030" y="110" as="geometry" />
+        </mxCell>
+        <mxCell id="uc8" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;strokeWidth=2.5;fontSize=14;" value="&lt;b&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;Activate Fogger&lt;/font&gt;&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size: 11px;&quot;&gt;Ultrasonic + Mist Maker 5V&lt;br&gt;via 4-Ch Relay&lt;/font&gt;" vertex="1">
+          <mxGeometry height="90" width="250" x="1030" y="245" as="geometry" />
+        </mxCell>
+        <mxCell id="uc9" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;strokeWidth=2.5;fontSize=14;" value="&lt;b&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;Activate LED Strip 12V&lt;/font&gt;&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size: 11px;&quot;&gt;via 4-Ch Relay&lt;/font&gt;" vertex="1">
+          <mxGeometry height="90" width="250" x="1030" y="380" as="geometry" />
+        </mxCell>
+        <mxCell id="uc10" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;strokeWidth=2.5;fontSize=14;" value="&lt;b&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;Display Readings&lt;br&gt;on OLED&lt;/font&gt;&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size: 11px;&quot;&gt;0.96&quot; 128x64&lt;/font&gt;" vertex="1">
+          <mxGeometry height="90" width="250" x="1030" y="515" as="geometry" />
+        </mxCell>
+        <mxCell id="uc11" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;strokeWidth=2.5;fontSize=14;" value="&lt;b&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;Transmit Data&lt;br&gt;via WiFi&lt;/font&gt;&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size: 11px;&quot;&gt;TP-Link TL-WR841N&lt;/font&gt;" vertex="1">
+          <mxGeometry height="90" width="250" x="1030" y="650" as="geometry" />
+        </mxCell>
+        <mxCell id="uc12" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;strokeWidth=2.5;fontSize=14;" value="&lt;b&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;Alert: pH Out of Range&lt;/font&gt;&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size: 11px;&quot;&gt;Manual Action Required&lt;/font&gt;" vertex="1">
+          <mxGeometry height="90" width="250" x="680" y="790" as="geometry" />
+        </mxCell>
+        <mxCell id="a1" edge="1" parent="1" style="endArrow=none;html=1;strokeWidth=1.5;" target="uc1" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="100" y="450" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="a2" edge="1" parent="1" style="endArrow=none;html=1;strokeWidth=1.5;" target="uc2" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="100" y="453" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="a3" edge="1" parent="1" style="endArrow=none;html=1;strokeWidth=1.5;" target="uc3" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="160" y="464.89660585114825" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="a4" edge="1" parent="1" style="endArrow=none;html=1;strokeWidth=1.5;" target="uc4" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="160" y="476.94542245891444" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="a5" edge="1" parent="1" source="AgVUEcnU-KWqXDYgDmlV-2" style="endArrow=none;html=1;strokeWidth=1.5;" target="uc5" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="160" y="488.9286780936777" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="a6" edge="1" parent="1" style="endArrow=none;html=1;strokeWidth=1.5;" target="uc6" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="90" y="467" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="a7" edge="1" parent="1" source="AgVUEcnU-KWqXDYgDmlV-2" style="endArrow=none;html=1;strokeWidth=1.5;exitX=0.5;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;" target="uc10" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="160" y="472.63389946687744" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="a8" edge="1" parent="1" source="AgVUEcnU-KWqXDYgDmlV-2" style="endArrow=none;html=1;strokeWidth=1.5;exitX=0.5;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;" target="uc11" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="160" y="476.58726498524084" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="r1" edge="1" parent="1" source="uc1" style="endArrow=open;endFill=0;html=1;dashed=1;strokeWidth=1.5;fontSize=12;" target="uc6" value="&lt;font style=&quot;font-size: 12px;&quot;&gt;&lt;&lt;include&gt;&gt;&lt;/font&gt;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="r2" edge="1" parent="1" source="uc2" style="endArrow=open;endFill=0;html=1;dashed=1;strokeWidth=1.5;fontSize=12;" target="uc6" value="&lt;font style=&quot;font-size: 12px;&quot;&gt;&lt;&lt;include&gt;&gt;&lt;/font&gt;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="r3" edge="1" parent="1" source="uc3" style="endArrow=open;endFill=0;html=1;dashed=1;strokeWidth=1.5;fontSize=12;" target="uc6" value="&lt;font style=&quot;font-size: 12px;&quot;&gt;&lt;&lt;include&gt;&gt;&lt;/font&gt;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="r4" edge="1" parent="1" source="uc4" style="endArrow=open;endFill=0;html=1;dashed=1;strokeWidth=1.5;fontSize=12;" target="uc6" value="&lt;font style=&quot;font-size: 12px;&quot;&gt;&lt;&lt;include&gt;&gt;&lt;/font&gt;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="r5" edge="1" parent="1" source="uc5" style="endArrow=open;endFill=0;html=1;dashed=1;strokeWidth=1.5;fontSize=12;" target="uc6" value="&lt;font style=&quot;font-size: 12px;&quot;&gt;&lt;&lt;include&gt;&gt;&lt;/font&gt;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="r6" edge="1" parent="1" source="uc6" style="endArrow=open;endFill=0;html=1;dashed=1;strokeWidth=1.5;fontSize=12;" target="uc7" value="&lt;font style=&quot;font-size: 12px;&quot;&gt;&lt;&lt;extend&gt;&gt;&lt;/font&gt;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="r7" edge="1" parent="1" source="uc6" style="endArrow=open;endFill=0;html=1;dashed=1;strokeWidth=1.5;fontSize=12;" target="uc8" value="&lt;font style=&quot;font-size: 12px;&quot;&gt;&lt;&lt;extend&gt;&gt;&lt;/font&gt;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="r8" edge="1" parent="1" source="uc6" style="endArrow=open;endFill=0;html=1;dashed=1;strokeWidth=1.5;fontSize=12;" target="uc9" value="&lt;font style=&quot;font-size: 12px;&quot;&gt;&lt;&lt;extend&gt;&gt;&lt;/font&gt;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="r9" edge="1" parent="1" source="uc3" style="endArrow=open;endFill=0;html=1;dashed=1;strokeWidth=1.5;fontSize=12;" target="uc12" value="&lt;font style=&quot;font-size: 12px;&quot;&gt;&lt;&lt;extend&gt;&gt;&lt;/font&gt;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="455" y="760" />
+              <mxPoint x="680" y="835" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="AgVUEcnU-KWqXDYgDmlV-2" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" value="Actor" vertex="1">
+          <mxGeometry height="60" width="30" x="60" y="430" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

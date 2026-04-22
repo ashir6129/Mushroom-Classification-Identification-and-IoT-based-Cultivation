@@ -1,0 +1,77 @@
+nohup: ignoring input
+2026-03-04 04:59:27,093 [INFO] 🎬 Initializing Master Mushroom Downloader v2...
+2026-03-04 04:59:27,095 [INFO] 📋 Found 215 mushroom species.
+2026-03-04 04:59:27,096 [INFO] ⏭️ Skipping 1)_almond_mushroom (Wrong dataset target).
+2026-03-04 04:59:27,098 [INFO] 
+🌟 Processing: 2)_amanita_gemmata (ID: 350046)
+2026-03-04 04:59:28,836 [INFO] 📊 iNaturalist reports 2392 total 'Research Grade' images for this species.
+2026-03-04 04:59:28,837 [INFO] ✅ Already reached target (600/600). Skipping.
+2026-03-04 04:59:28,847 [INFO] 
+🌟 Processing: 3)_amethyst_chanterelle (ID: 566555)
+2026-03-04 04:59:30,991 [INFO] 📊 iNaturalist reports 338 total 'Research Grade' images for this species.
+2026-03-04 04:59:30,992 [INFO] ✅ Already reached target (600/338). Skipping.
+2026-03-04 04:59:31,002 [INFO] 
+🌟 Processing: 4)_amethyst_deceiver (ID: 55899)
+2026-03-04 04:59:32,525 [INFO] 📊 iNaturalist reports 14190 total 'Research Grade' images for this species.
+2026-03-04 04:59:32,525 [INFO] ✅ Already reached target (600/600). Skipping.
+2026-03-04 04:59:32,538 [INFO] 
+🌟 Processing: 5)_aniseed_funnel (ID: 1525546)
+2026-03-04 04:59:33,883 [INFO] 📊 iNaturalist reports 2318 total 'Research Grade' images for this species.
+2026-03-04 04:59:33,883 [INFO] ✅ Already reached target (600/600). Skipping.
+2026-03-04 04:59:33,889 [INFO] 
+🌟 Processing: 6)_ascot_hat (ID: 875042)
+2026-03-04 04:59:35,358 [INFO] 📊 iNaturalist reports 160 total 'Research Grade' images for this species.
+2026-03-04 04:59:35,359 [INFO] ✅ Already reached target (281/160). Skipping.
+2026-03-04 04:59:35,361 [INFO] 
+🌟 Processing: 7)_bay_bolete (ID: 510854)
+2026-03-04 04:59:37,370 [INFO] 📊 iNaturalist reports 10466 total 'Research Grade' images for this species.
+2026-03-04 04:59:37,370 [INFO] 📉 Starting download: index 1 to target 600
+2026-03-04 05:00:55,771 [INFO]    📸 7)_bay_bolete: 25/600
+2026-03-04 05:02:12,974 [INFO]    📸 7)_bay_bolete: 50/600
+2026-03-04 05:03:15,142 [INFO]    📸 7)_bay_bolete: 75/600
+2026-03-04 05:04:41,356 [INFO]    📸 7)_bay_bolete: 100/600
+2026-03-04 05:06:03,786 [INFO]    📸 7)_bay_bolete: 125/600
+2026-03-04 05:07:41,930 [INFO]    📸 7)_bay_bolete: 150/600
+2026-03-04 05:09:00,117 [INFO]    📸 7)_bay_bolete: 175/600
+2026-03-04 05:10:16,292 [INFO]    📸 7)_bay_bolete: 200/600
+2026-03-04 05:12:34,147 [INFO]    📸 7)_bay_bolete: 225/600
+2026-03-04 05:14:00,112 [INFO]    📸 7)_bay_bolete: 250/600
+2026-03-04 05:15:17,341 [INFO]    📸 7)_bay_bolete: 275/600
+2026-03-04 05:16:35,927 [INFO]    📸 7)_bay_bolete: 300/600
+2026-03-04 05:17:45,546 [INFO]    📸 7)_bay_bolete: 325/600
+2026-03-04 05:19:01,628 [INFO]    📸 7)_bay_bolete: 350/600
+2026-03-04 05:20:15,546 [INFO]    📸 7)_bay_bolete: 375/600
+2026-03-04 05:21:30,700 [INFO]    📸 7)_bay_bolete: 400/600
+2026-03-04 05:22:57,022 [INFO]    📸 7)_bay_bolete: 425/600
+2026-03-04 05:24:12,011 [INFO]    📸 7)_bay_bolete: 450/600
+2026-03-04 05:25:23,306 [INFO]    📸 7)_bay_bolete: 475/600
+2026-03-04 05:26:48,552 [INFO]    📸 7)_bay_bolete: 500/600
+2026-03-04 05:27:58,287 [INFO]    📸 7)_bay_bolete: 525/600
+2026-03-04 05:29:37,778 [INFO]    📸 7)_bay_bolete: 550/600
+2026-03-04 05:31:35,264 [INFO]    📸 7)_bay_bolete: 575/600
+2026-03-04 05:33:16,686 [INFO]    📸 7)_bay_bolete: 600/600
+2026-03-04 05:33:17,686 [INFO] 
+🌟 Processing: 8)_bearded_milkcap (ID: 382882)
+2026-03-04 05:33:20,002 [INFO] 📊 iNaturalist reports 1161 total 'Research Grade' images for this species.
+2026-03-04 05:33:20,003 [INFO] 📉 Starting download: index 1 to target 600
+2026-03-04 05:35:22,054 [INFO]    📸 8)_bearded_milkcap: 25/600
+2026-03-04 05:36:28,709 [INFO]    📸 8)_bearded_milkcap: 50/600
+2026-03-04 05:38:23,437 [INFO]    📸 8)_bearded_milkcap: 75/600
+2026-03-04 05:39:48,516 [INFO]    📸 8)_bearded_milkcap: 100/600
+2026-03-04 05:41:13,506 [INFO]    📸 8)_bearded_milkcap: 125/600
+2026-03-04 05:42:34,591 [INFO]    📸 8)_bearded_milkcap: 150/600
+2026-03-04 05:43:49,779 [INFO]    📸 8)_bearded_milkcap: 175/600
+2026-03-04 05:45:00,051 [INFO]    📸 8)_bearded_milkcap: 200/600
+2026-03-04 05:46:36,081 [INFO]    📸 8)_bearded_milkcap: 225/600
+2026-03-04 05:48:14,387 [INFO]    📸 8)_bearded_milkcap: 250/600
+2026-03-04 05:49:25,022 [INFO]    📸 8)_bearded_milkcap: 275/600
+2026-03-04 05:51:36,430 [INFO]    📸 8)_bearded_milkcap: 300/600
+2026-03-04 05:55:04,910 [INFO]    📸 8)_bearded_milkcap: 325/600
+2026-03-04 05:57:02,558 [INFO]    📸 8)_bearded_milkcap: 350/600
+2026-03-04 05:58:20,385 [INFO]    📸 8)_bearded_milkcap: 375/600
+2026-03-04 05:59:33,164 [INFO]    📸 8)_bearded_milkcap: 400/600
+2026-03-04 06:00:43,765 [INFO]    📸 8)_bearded_milkcap: 425/600
+2026-03-04 06:02:03,501 [INFO]    📸 8)_bearded_milkcap: 450/600
+2026-03-04 06:03:22,170 [INFO]    📸 8)_bearded_milkcap: 475/600
+[INFO]    📸 8)_bearded_milkcap: 450/600
+2026-03-04 06:03:22,170 [INFO]    📸 8)_bearded_milkcap: 475/600

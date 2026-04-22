@@ -1,0 +1,60 @@
+nohup: ignoring input
+2026-03-04 03:57:10,881 [INFO] 🍄 Starting Batch 2 Downloader (Species 9-13)...
+2026-03-04 03:57:10,882 [INFO] 
+🚀 Starting: 9)_beechwood_sickener (ID: 49446)
+2026-03-04 03:58:00,917 [INFO]    ✅ 9)_beechwood_sickener: 20/600
+2026-03-04 03:58:42,186 [INFO]    ✅ 9)_beechwood_sickener: 40/600
+2026-03-04 03:59:30,858 [INFO]    ✅ 9)_beechwood_sickener: 60/600
+2026-03-04 04:00:25,737 [INFO]    ✅ 9)_beechwood_sickener: 80/600
+2026-03-04 04:01:11,172 [INFO]    ✅ 9)_beechwood_sickener: 100/600
+2026-03-04 04:01:56,909 [INFO]    ✅ 9)_beechwood_sickener: 120/600
+2026-03-04 04:02:41,281 [INFO]    ✅ 9)_beechwood_sickener: 140/600
+2026-03-04 04:03:25,339 [INFO]    ✅ 9)_beechwood_sickener: 160/600
+2026-03-04 04:04:04,148 [INFO]    ✅ 9)_beechwood_sickener: 180/600
+2026-03-04 04:04:50,173 [INFO]    ✅ 9)_beechwood_sickener: 200/600
+2026-03-04 04:05:41,532 [INFO]    ✅ 9)_beechwood_sickener: 220/600
+2026-03-04 04:06:23,356 [INFO]    ✅ 9)_beechwood_sickener: 240/600
+2026-03-04 04:07:07,683 [INFO]    ✅ 9)_beechwood_sickener: 260/600
+2026-03-04 04:07:58,783 [INFO]    ✅ 9)_beechwood_sickener: 280/600
+2026-03-04 04:08:42,667 [INFO]    ✅ 9)_beechwood_sickener: 300/600
+2026-03-04 04:09:25,156 [INFO]    ✅ 9)_beechwood_sickener: 320/600
+2026-03-04 04:10:13,230 [INFO]    ✅ 9)_beechwood_sickener: 340/600
+2026-03-04 04:11:01,987 [INFO]    ✅ 9)_beechwood_sickener: 360/600
+2026-03-04 04:11:53,083 [INFO]    ✅ 9)_beechwood_sickener: 380/600
+2026-03-04 04:12:41,420 [INFO]    ✅ 9)_beechwood_sickener: 400/600
+2026-03-04 04:13:17,652 [INFO]    ✅ 9)_beechwood_sickener: 420/600
+2026-03-04 04:13:41,844 [INFO]    ✅ 9)_beechwood_sickener: 440/600
+2026-03-04 04:14:28,443 [INFO]    ✅ 9)_beechwood_sickener: 460/600
+2026-03-04 04:14:58,365 [INFO]    ✅ 9)_beechwood_sickener: 480/600
+2026-03-04 04:15:06,220 [INFO]    🏁 End of verified data for 9)_beechwood_sickener.
+2026-03-04 04:15:06,221 [INFO] 
+🚀 Starting: 10)_beefsteak_fungus (ID: 123897)
+2026-03-04 04:15:58,313 [INFO]    ✅ 10)_beefsteak_fungus: 20/600
+2026-03-04 04:16:47,034 [INFO]    ✅ 10)_beefsteak_fungus: 40/600
+2026-03-04 04:17:35,940 [INFO]    ✅ 10)_beefsteak_fungus: 60/600
+2026-03-04 04:18:25,935 [INFO]    ✅ 10)_beefsteak_fungus: 80/600
+2026-03-04 04:19:13,869 [INFO]    ✅ 10)_beefsteak_fungus: 100/600
+2026-03-04 04:20:01,299 [INFO]    ✅ 10)_beefsteak_fungus: 120/600
+2026-03-04 04:20:47,705 [INFO]    ✅ 10)_beefsteak_fungus: 140/600
+2026-03-04 04:21:40,638 [INFO]    ✅ 10)_beefsteak_fungus: 160/600
+2026-03-04 04:22:25,756 [INFO]    ✅ 10)_beefsteak_fungus: 180/600
+2026-03-04 04:23:20,066 [INFO]    ✅ 10)_beefsteak_fungus: 200/600
+2026-03-04 04:24:08,910 [INFO]    ✅ 10)_beefsteak_fungus: 220/600
+2026-03-04 04:24:59,248 [INFO]    ✅ 10)_beefsteak_fungus: 240/600
+2026-03-04 04:25:48,044 [INFO]    ✅ 10)_beefsteak_fungus: 260/600
+2026-03-04 04:26:35,920 [INFO]    ✅ 10)_beefsteak_fungus: 280/600
+2026-03-04 04:27:20,275 [INFO]    ✅ 10)_beefsteak_fungus: 300/600
+2026-03-04 04:28:15,684 [INFO]    ✅ 10)_beefsteak_fungus: 320/600
+2026-03-04 04:29:03,989 [INFO]    ✅ 10)_beefsteak_fungus: 340/600
+2026-03-04 04:29:51,281 [INFO]    ✅ 10)_beefsteak_fungus: 360/600
+2026-03-04 04:30:33,415 [INFO]    ✅ 10)_beefsteak_fungus: 380/600
+2026-03-04 04:31:27,153 [INFO]    ✅ 10)_beefsteak_fungus: 400/600
+2026-03-04 04:32:06,835 [INFO]    ✅ 10)_beefsteak_fungus: 420/600
+2026-03-04 04:33:10,426 [INFO]    ✅ 10)_beefsteak_fungus: 440/600
+2026-03-04 04:33:57,250 [INFO]    ✅ 10)_beefsteak_fungus: 460/600
+2026-03-04 04:39:18,154 [INFO]    ✅ 10)_beefsteak_fungus: 480/600
+2026-03-04 04:40:48,648 [INFO]    ✅ 10)_beefsteak_fungus: 500/600
+2026-03-04 04:42:40,606 [INFO]    ✅ 10)_beefsteak_fungus: 520/600
+2026-03-04 04:43:34,199 [INFO]    ✅ 10)_beefsteak_fungus: 540/600
+2026-03-04 04:44:38,550 [INFO]    ✅ 10)_beefsteak_fungus: 560/600
+2026-03-04 04:45:57,772 [INFO]    ✅ 10)_beefsteak_fungus: 580/600

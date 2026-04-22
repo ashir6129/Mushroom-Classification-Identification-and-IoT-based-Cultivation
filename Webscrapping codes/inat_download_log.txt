@@ -1,0 +1,21 @@
+2026-03-04 01:11:08,068 [INFO] ============================================================
+2026-03-04 01:11:08,069 [INFO] 🍄 iNaturalist High-Quality Downloader
+2026-03-04 01:11:08,070 [INFO] Target: 600 images per class
+2026-03-04 01:11:08,071 [INFO] Categories to process: 215
+2026-03-04 01:11:08,071 [INFO] ============================================================
+2026-03-04 01:11:08,072 [INFO] 
+[1/215] 🍄 Processing: almond mushroom
+2026-03-04 01:11:08,072 [INFO]    Currently have 0 images. Need 600 more.
+2026-03-04 01:11:15,325 [INFO]    Page 1: Processing 83 potential observations...
+2026-03-04 01:11:37,162 [INFO] ============================================================
+2026-03-04 01:11:37,163 [INFO] 🍄 iNaturalist High-Quality Downloader
+2026-03-04 01:11:37,164 [INFO] Target: 600 images per class
+2026-03-04 01:11:37,164 [INFO] Categories to process: 215
+2026-03-04 01:11:37,165 [INFO] ============================================================
+2026-03-04 01:11:37,166 [INFO] 
+[1/215] 🍄 Processing: almond mushroom
+2026-03-04 01:11:37,166 [INFO]    Currently have 0 images. Need 600 more.
+2026-03-04 01:11:40,630 [INFO]    Page 1: Processing 83 potential observations...
+2026-03-04 01:12:18,478 [INFO]       Progress: 20/600
+2026-03-04 01:12:56,197 [INFO]       Progress: 40/600
+2026-03-04 01:13:56,520 [INFO]       Progress: 60/600

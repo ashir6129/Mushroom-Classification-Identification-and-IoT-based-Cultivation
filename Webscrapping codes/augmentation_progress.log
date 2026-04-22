@@ -1,0 +1,14 @@
+🚀 Starting Fast Data Augmentation to reach 600 images per class...
+📈 Augmenting 1)_almond_mushroom: 308 -> 600 (+292)
+📈 Augmenting 107)_macro_mushroom: 431 -> 600 (+169)
+📈 Augmenting 110)_medusa_mushroom: 254 -> 600 (+346)
+📈 Augmenting 113)_oak_bolete: 286 -> 600 (+314)
+📈 Augmenting 114)_oak_mazegill: 599 -> 600 (+1)
+📈 Augmenting 115)_oak_polypore: 442 -> 600 (+158)
+📈 Augmenting 129)_peppery_bolete: 599 -> 600 (+1)
+✂️ Trimming 149)_scaly_wood_mushroom: 800 -> 600
+✂️ Trimming 202)_white_false_death_cap: 669 -> 600
+📈 Augmenting 208)_woodland_inkcap: 435 -> 600 (+165)
+📈 Augmenting 39)_common_bonnet: 599 -> 600 (+1)
+✂️ Trimming 48)_deadly_fibrecap: 681 -> 600
+🏁 Dataset Balancing Complete!

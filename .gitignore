@@ -18,11 +18,6 @@ migrate_working_dir/
 *.iws
 .idea/
 
-# The .vscode folder contains launch configuration and tasks you configure in
-# VS Code which you may wish to be included in version control, so this line
-# is commented out by default.
-#.vscode/
-
 # Flutter/Dart/Pub related
 **/doc/api/
 **/ios/Flutter/.last_build_id
@@ -44,9 +39,36 @@ app.*.map.json
 /android/app/profile
 /android/app/release
 
-# Large Datasets and Files (Exceeds GitHub limits)
-4class/
-Ai Module/
+# Python related
+venv/
+.venv/
+env/
+__pycache__/
+
+# Virtual environment in subfolders
+model_api/venv/
+*/venv/
+
+# Huge files and folders
 *.zip
 *.tar.gz
 *.7z
+*.rar
+*.pdf
+*.docx
+backups/
+
+# Models and datasets
+Ai Module/
+Professional_Mushroom_Dataset/
+4class/
+New Model/
+
+# Ignore large model exports
+*.onnx
+*.pth
+*.pt
+*.h5
+*.pb
+*.tflite
+*.onnx.data

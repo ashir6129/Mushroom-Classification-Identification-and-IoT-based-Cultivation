@@ -1,0 +1,97 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36" version="29.6.1">
+  <diagram name="Mushroom Classification" id="mushroom-activity">
+    <mxGraphModel dx="2194" dy="1168" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;" value="&lt;b&gt;&lt;font style=&quot;font-size: 16px;&quot;&gt;Activity Diagram: Mushroom Image Classification System&lt;/font&gt;&lt;/b&gt;" vertex="1">
+          <mxGeometry height="40" width="500" x="175" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="start" parent="1" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#000000;fontColor=#ffffff;strokeColor=#000000;fontSize=13;" value="&lt;b&gt;Start&lt;/b&gt;" vertex="1">
+          <mxGeometry height="50" width="100" x="375" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="e1" edge="1" parent="1" source="start" style="endArrow=block;endFill=1;html=1;rounded=0;" target="open-app" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="open-app" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fontSize=13;" value="&lt;b&gt;Open App&lt;/b&gt;" vertex="1">
+          <mxGeometry height="50" width="150" x="350" y="180" as="geometry" />
+        </mxCell>
+        <mxCell id="e2" edge="1" parent="1" source="open-app" style="endArrow=block;endFill=1;html=1;rounded=0;" target="capture" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="capture" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fontSize=13;" value="&lt;b&gt;Capture / Upload&lt;br&gt;Mushroom Image&lt;/b&gt;" vertex="1">
+          <mxGeometry height="60" width="150" x="350" y="270" as="geometry" />
+        </mxCell>
+        <mxCell id="e3" edge="1" parent="1" source="capture" style="endArrow=block;endFill=1;html=1;rounded=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="ZWlX3h4SW05etOGt8nC7-1" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="425" y="380" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ai-classify" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontSize=13;" value="&lt;b&gt;Classify Mushroom&lt;br&gt;( AI Model )&lt;/b&gt;" vertex="1">
+          <mxGeometry height="60" width="150" x="350" y="460" as="geometry" />
+        </mxCell>
+        <mxCell id="e5" edge="1" parent="1" source="ai-classify" style="endArrow=block;endFill=1;html=1;rounded=0;" target="display-result" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="display-result" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontSize=13;" value="&lt;b&gt;Display Classification&lt;br&gt;Result&lt;/b&gt;" vertex="1">
+          <mxGeometry height="60" width="150" x="350" y="550" as="geometry" />
+        </mxCell>
+        <mxCell id="e6" edge="1" parent="1" source="display-result" style="endArrow=block;endFill=1;html=1;rounded=0;" target="learn-more" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="learn-more" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontSize=13;" value="&lt;b&gt;Learn More About&lt;br&gt;Mushroom&lt;/b&gt;" vertex="1">
+          <mxGeometry height="60" width="150" x="350" y="630" as="geometry" />
+        </mxCell>
+        <mxCell id="e7" edge="1" parent="1" source="learn-more" style="endArrow=block;endFill=1;html=1;rounded=0;" target="save-local" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="save-local" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontSize=13;" value="&lt;b&gt;Save Classification Result&lt;br&gt;to Local History&lt;br&gt;(Offline - User Device Only)&lt;/b&gt;" vertex="1">
+          <mxGeometry height="70" width="200" x="325" y="750" as="geometry" />
+        </mxCell>
+        <mxCell id="e8" edge="1" parent="1" source="save-local" style="endArrow=block;endFill=1;html=1;rounded=0;" target="decision" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="decision" parent="1" style="rhombus;whiteSpace=wrap;html=1;fontSize=13;" value="&lt;b&gt;Classify Another&lt;br&gt;Mushroom?&lt;/b&gt;" vertex="1">
+          <mxGeometry height="110" width="190" x="330" y="870" as="geometry" />
+        </mxCell>
+        <mxCell id="yes-lbl" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=13;" value="&lt;b&gt;Yes&lt;/b&gt;" vertex="1">
+          <mxGeometry height="30" width="50" x="215" y="900" as="geometry" />
+        </mxCell>
+        <mxCell id="no-lbl" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=13;" value="&lt;b&gt;No&lt;/b&gt;" vertex="1">
+          <mxGeometry height="30" width="50" x="590" y="900" as="geometry" />
+        </mxCell>
+        <mxCell id="e9" edge="1" parent="1" source="decision" style="endArrow=block;endFill=1;html=1;rounded=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="capture" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="200" y="925" />
+              <mxPoint x="200" y="300" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e10" edge="1" parent="1" source="decision" style="endArrow=block;endFill=1;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" target="exit-app" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="650" y="925" />
+              <mxPoint x="650" y="1020" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="exit-app" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fontSize=13;" value="&lt;b&gt;Exit Application&lt;/b&gt;" vertex="1">
+          <mxGeometry height="50" width="150" x="350" y="1000" as="geometry" />
+        </mxCell>
+        <mxCell id="e11" edge="1" parent="1" source="exit-app" style="endArrow=block;endFill=1;html=1;rounded=0;" target="end" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="end" parent="1" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#000000;fontColor=#ffffff;strokeColor=#000000;fontSize=13;" value="&lt;b&gt;End&lt;/b&gt;" vertex="1">
+          <mxGeometry height="50" width="100" x="375" y="1090" as="geometry" />
+        </mxCell>
+        <mxCell id="ZWlX3h4SW05etOGt8nC7-3" edge="1" parent="1" source="ZWlX3h4SW05etOGt8nC7-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="ai-classify" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ZWlX3h4SW05etOGt8nC7-1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontSize=13;" value="&lt;b&gt;Preprocess Image&lt;/b&gt;" vertex="1">
+          <mxGeometry height="60" width="150" x="350" y="360" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -1,0 +1,215 @@
+1) Almond Mushroom
+2) Amanita Gemmata
+3) Amethyst Chanterelle
+4) Amethyst Deceiver
+5) Aniseed Funnel
+6) Ascot Hat
+7) Bay Bolete
+8) Bearded Milkcap
+9) Beechwood Sickener
+10) Beefsteak Fungus
+11) Birch Polypore
+12) Birch Woodwart
+13) Bitter Beech Bolete
+14) Bitter Bolete
+15) Black Bulgar
+16) Black Morel
+17) Blackening Brittlegill
+18) Blackening Polypore
+19) Blackening Waxcap
+20) Blue Roundhead
+21) Blushing Bracket
+22) Blushing Rosette
+23) Blushing Wood Mushroom
+24) Bovine Bolete
+25) Bronze Bolete
+26) Brown Birch Bolete
+27) Brown Rollrim
+28) Bruising Webcap
+29) Butter Cap
+30) Cauliflower Fungus
+31) Cedarwood Waxcap
+32) Chanterelle
+33) Charcoal Burner
+34) Chestnut Bolete
+35) Chicken Of The Woods
+36) Cinnamon Bracket
+37) Clouded Agaric
+38) Clustered Domecap
+39) Common Bonnet
+40) Common Inkcap
+41) Common Morel
+42) Common Puffball
+43) Common Rustgill
+44) Crimped Gill
+45) Crimson Waxcap
+46) Cucumber Cap
+47) Curry Milkcap
+48) Deadly Fibrecap
+49) Deadly Webcap
+50) Deathcap
+51) Deer Shield
+52) Destroying Angel
+53) Devils Bolete
+54) Dog Stinkhorn
+55) Dryads Saddle
+56) Dusky Puffball
+57) Dyers Mazegill
+58) Earthballs
+59) Egghead Mottlegill
+60) Elfin Saddle
+61) Fairy Ring Champignons
+62) False Chanterelle
+63) False Deathcap
+64) False Morel
+65) False Saffron Milkcap
+66) Fenugreek Milkcap
+67) Field Blewit
+68) Field Mushroom
+69) Fleecy Milkcap
+70) Fly Agaric
+71) Fools Funnel
+72) Fragrant Funnel
+73) Freckled Dapperling
+74) Frosted Chanterelle
+75) Funeral Bell
+76) Geranium Brittlegill
+77) Giant Funnel
+78) Giant Puffball
+79) Glistening Inkcap
+80) Golden Bootleg
+81) Golden Scalycap
+82) Golden Waxcap
+83) Greencracked Brittlegill
+84) Grey Knight
+85) Grey Spotted Amanita
+86) Grisettes
+87) Hairy Curtain Crust
+88) Health Waxcap
+89) Hedgehog Fungus
+90) Hen Of The Woods
+91) Honey Fungus
+92) Hoof Fungus
+93) Horn Of Plenty
+94) Horse Mushroom
+95) Inky Mushroom
+96) Jelly Ear
+97) Jelly Tooth
+98) Jubilee Waxcap
+99) King Alferds Cakes
+100) Larch Bolete
+101) Leccinum Albostipitatum
+102) Liberty Cap
+103) Lilac Bonnet
+104) Lilac Fibrecap
+105) Lions Mane
+106) Lurid Bolete
+107) Macro Mushroom
+108) Magpie Inkcap
+109) Meadow Waxcap
+110) Medusa Mushroom
+111) Morel
+112) Mosaic Puffball
+113) Oak Bolete
+114) Oak Mazegill
+115) Oak Polypore
+116) Ochre Brittlegill
+117) Old Man Of The Woods
+118) Orange Birch Bolete
+119) Orange Bolete
+120) Orange Grisette
+121) Orange Peel Fungus
+122) Oyster Mushroom
+123) Pale Oyster
+124) Panthercap
+125) Parasol
+126) Parrot Waxcap
+127) Pavement Mushroom
+128) Penny Bun
+129) Peppery Bolete
+130) Pestle Puffball
+131) Pine Bolete
+132) Pink Waxcap
+133) Plums And Custard
+134) Poison Pie
+135) Poplar Bell
+136) Poplar Fieldcap
+137) Porcelain Fungus
+138) Powdery Brittlegill
+139) Purple Brittlegill
+140) Red Belted Bracket
+141) Red Cracking Bolete
+142) Root Rot
+143) Rooting Bolete
+144) Rooting Shank
+145) Rosy Bonnet
+146) Ruby Bolete
+147) Saffron Milkcap
+148) Scarlet Waxcap
+149) Scaly Wood Mushroom
+150) Scarlet Caterpillarclub
+151) Scarlet Elfcup
+152) Scarletina Bolete
+153) Semifree Morel
+154) Sepia Bolete
+155) Shaggy Bracket
+156) Shaggy Inkcap
+157) Shaggy Parasol
+158) Shaggy Scalycap
+159) Sheathed Woodtuft
+160) Silky Rosegill
+161) Silverleaf Fungus
+162) Slender Parasol
+163) Slimy Waxcap
+164) Slippery Jack
+165) Smoky Bracket
+166) Snakeskin Grisette
+167) Snowy Waxcap
+168) Spectacular Rustgill
+169) Splendid Waxcap
+170) Splitgill
+171) Spotted Toughshank
+172) Spring Fieldcap
+173) St Georges Mushroom
+174) Stinkhorn
+175) Stinking Dapperling
+176) Stubble Rosegill
+177) Stump Puffball
+178) Suede Bolete
+179) Sulphur Tuft
+180) Summer Bolete
+181) Tawny Funnel
+182) Tawny Grisette
+183) Terracotta Hedgehog
+184) The Blusher
+185) The Deceiver
+186) The Goblet
+187) The Miller
+188) The Prince
+189) The Sickener
+190) Thimble Morel
+191) Tripe Fungus
+192) Trooping Funnel
+193) Truffles
+194) Tuberous Polypore
+195) Turkey Tail
+196) Velvet Shank
+197) Vermillion Waxcap
+198) Warted Amanita
+199) Weeping Widow
+200) White Dapperling
+201) White Domecap
+202) White False Death Cap
+203) White Fibrecap
+204) White Saddle
+205) Winter Chanterelle
+206) Wood Blewit
+207) Wood Mushroom
+208) Woodland Inkcap
+209) Woolly Milkcap
+210) Wrinkled Peach
+211) Yellow False Truffle
+212) Yellow Foot Waxcap
+213) Yellow Stagshorn
+214) Yellow Stainer
+215) Yellow Swamp Brittlegill

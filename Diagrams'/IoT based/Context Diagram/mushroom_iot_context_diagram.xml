@@ -1,0 +1,54 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36" version="29.6.1">
+  <diagram name="IoT Context Diagram" id="mushroom-iot-context">
+    <mxGraphModel dx="1678" dy="893" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1400" pageHeight="1000" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;" value="&lt;b&gt;&lt;font style=&quot;font-size: 20px;&quot;&gt;Context Diagram (Level 0 DFD) — IoT Based Morel Mushroom Cultivation System&lt;/font&gt;&lt;/b&gt;" vertex="1">
+          <mxGeometry height="45" width="1200" x="100" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="system" parent="1" style="ellipse;whiteSpace=wrap;html=1;fontSize=15;strokeWidth=4;strokeColor=#2e7d32;fillColor=#d5e8d4;" value="&lt;b&gt;&lt;font style=&quot;font-size: 17px;&quot;&gt;IoT Morel Mushroom&lt;br&gt;Cultivation System&lt;/font&gt;&lt;/b&gt;&lt;br&gt;&lt;br&gt;&lt;font style=&quot;font-size: 12px;&quot;&gt;(ESP32-WROVER-E — On-Device)&lt;/font&gt;" vertex="1">
+          <mxGeometry height="220" width="380" x="430" y="300" as="geometry" />
+        </mxCell>
+        <mxCell id="sensors" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fontSize=14;strokeWidth=3;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="&lt;b&gt;&lt;font style=&quot;font-size: 15px;&quot;&gt;Sensors&lt;/font&gt;&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size: 12px;&quot;&gt;SHT31 / SEN0193&lt;br&gt;SEN0161 / MH-Z19C&lt;br&gt;BH1750&lt;/font&gt;" vertex="1">
+          <mxGeometry height="110" width="220" x="80" y="350" as="geometry" />
+        </mxCell>
+        <mxCell id="actuators" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fontSize=14;strokeWidth=3;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="&lt;b&gt;&lt;font style=&quot;font-size: 15px;&quot;&gt;Actuators&lt;/font&gt;&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size: 12px;&quot;&gt;PWM Fan / Fogger&lt;br&gt;LED Strip 12V&lt;br&gt;4-Ch Relay&lt;/font&gt;" vertex="1">
+          <mxGeometry height="110" width="220" x="940" y="350" as="geometry" />
+        </mxCell>
+        <mxCell id="display" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fontSize=14;strokeWidth=3;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="&lt;b&gt;&lt;font style=&quot;font-size: 15px;&quot;&gt;OLED Display&lt;/font&gt;&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size: 12px;&quot;&gt;0.96&quot; 128x64&lt;br&gt;Local Interface&lt;/font&gt;" vertex="1">
+          <mxGeometry height="90" width="200" x="530" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="wifi" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fontSize=14;strokeWidth=3;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="&lt;b&gt;&lt;font style=&quot;font-size: 15px;&quot;&gt;WiFi Network&lt;/font&gt;&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size: 12px;&quot;&gt;TP-Link TL-WR841N&lt;br&gt;Dashboard / Monitor&lt;/font&gt;" vertex="1">
+          <mxGeometry height="90" width="200" x="530" y="660" as="geometry" />
+        </mxCell>
+        <mxCell id="power" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fontSize=14;strokeWidth=3;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="&lt;b&gt;&lt;font style=&quot;font-size: 15px;&quot;&gt;Power Supply&lt;/font&gt;&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size: 12px;&quot;&gt;12V 2A PSU&lt;br&gt;AMS1117-5V Regulator&lt;/font&gt;" vertex="1">
+          <mxGeometry height="90" width="220" x="80" y="600" as="geometry" />
+        </mxCell>
+        <mxCell id="f-sensors-sys" edge="1" parent="1" source="sensors" style="endArrow=block;endFill=1;html=1;strokeWidth=2.5;strokeColor=#000000;fontSize=13;align=center;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="system" value="&lt;b&gt;&lt;font style=&quot;font-size: 13px;&quot;&gt;Raw Sensor Data&lt;br&gt;(Temp, Humidity, pH,&lt;br&gt;Moisture, CO2, Light)&lt;/font&gt;&lt;/b&gt;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f-sys-actuators" edge="1" parent="1" source="system" style="endArrow=block;endFill=1;html=1;strokeWidth=2.5;strokeColor=#000000;fontSize=13;align=center;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="actuators" value="&lt;b&gt;&lt;font style=&quot;font-size: 13px;&quot;&gt;Control Signals&lt;br&gt;(ON / OFF Commands&lt;br&gt;via Relay)&lt;/font&gt;&lt;/b&gt;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f-sys-display" edge="1" parent="1" source="system" style="endArrow=block;endFill=1;html=1;strokeWidth=2.5;strokeColor=#000000;fontSize=13;align=center;exitX=0.4;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" target="display" value="&lt;b&gt;&lt;font style=&quot;font-size: 13px;&quot;&gt;Real-Time Readings&lt;/font&gt;&lt;/b&gt;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f-sys-wifi" edge="1" parent="1" source="system" style="endArrow=block;endFill=1;html=1;strokeWidth=2.5;strokeColor=#000000;fontSize=13;align=center;exitX=0.6;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="wifi" value="&lt;b&gt;&lt;font style=&quot;font-size: 13px;&quot;&gt;Sensor Data (WiFi Transmission)&lt;/font&gt;&lt;/b&gt;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f-power-sys" edge="1" parent="1" source="power" style="endArrow=block;endFill=1;html=1;strokeWidth=2.5;strokeColor=#000000;fontSize=13;align=center;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.9;entryDx=0;entryDy=0;" target="system" value="&lt;b&gt;&lt;font style=&quot;font-size: 13px;&quot;&gt;5V / 3.3V Power Supply&lt;/font&gt;&lt;/b&gt;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="380" y="645" />
+              <mxPoint x="380" y="500" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="note" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fffacd;strokeColor=#d6b656;strokeWidth=2;align=left;spacingLeft=10;fontSize=12;" value="&lt;i&gt;&lt;font style=&quot;font-size: 12px;&quot;&gt;* Internal components (ADS1115 ADC, Veroboard PCB,&lt;br&gt;Breadboard, Resistors) are inside the system boundary.&lt;br&gt;This is a Level 0 Context Diagram.&lt;/font&gt;&lt;/i&gt;" vertex="1">
+          <mxGeometry height="90" width="340" x="940" y="600" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

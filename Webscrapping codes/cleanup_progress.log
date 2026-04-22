@@ -1,0 +1,13 @@
+🧹 Starting Dataset Cleanup across 215 classes...
+🗑️  114)_oak_mazegill: Removed 1 bad images. Remaining: 599
+🗑️  129)_peppery_bolete: Removed 1 bad images. Remaining: 599
+🗑️  39)_common_bonnet: Removed 1 bad images. Remaining: 589
+🗑️  49)_deadly_webcap: Removed 1 bad images. Remaining: 599
+🗑️  8)_bearded_milkcap: Removed 1 bad images. Remaining: 599
+🗑️  82)_golden_waxcap: Removed 1 bad images. Remaining: 599
+
+📊 Cleanup Summary:
+   Removed: 5919 images
+   Corrupt: 0 images
+   Kept: 123165 good images
+✅ Cleanup Complete!
